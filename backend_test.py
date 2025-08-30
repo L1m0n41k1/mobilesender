@@ -205,7 +205,7 @@ class SenderAPITester:
             # Test updating user subscription (admin only)
             if self.test_user_id:
                 response = self.make_request("PUT", f"/users/{self.test_user_id}/subscription", 
-                                           {"plan": "basic"}, token=self.admin_token)
+                                           params={"plan": "basic"}, token=self.admin_token)
                 
                 if response.status_code == 200:
                     self.log_test("Update User Subscription", True, 
