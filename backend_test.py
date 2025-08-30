@@ -249,7 +249,7 @@ class SenderAPITester:
                 
                 # Test updating a plan price (admin only)
                 response = self.make_request("PUT", "/subscription-plans/basic", 
-                                           {"price": 1299}, token=self.admin_token)
+                                           params={"price": 1299}, token=self.admin_token)
                 
                 if response.status_code == 200:
                     self.log_test("Update Plan Price", True, 
