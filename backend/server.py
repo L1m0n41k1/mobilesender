@@ -269,16 +269,19 @@ async def get_templates(current_user: UserResponse = Depends(get_current_user)):
     templates = await db.templates.find({"user_id": current_user.id}).to_list(100)
     return [Template(**template) for template in templates]
 
+class TemplateCreate(BaseModel):
+    name: str
+    content: str
+
 @api_router.post("/templates", response_model=Template)
 async def create_template(
-    name: str,
-    content: str,
+    template_data: TemplateCreate,
     current_user: UserResponse = Depends(get_current_user)
 ):
     template = Template(
         user_id=current_user.id,
-        name=name,
-        content=content
+        name=template_data.name,
+        content=template_data.content
     )
     
     await db.templates.insert_one(template.dict())
