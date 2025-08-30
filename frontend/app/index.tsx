@@ -19,19 +19,19 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // Context
-import { AuthProvider, useAuth } from './context/AuthContext';
+import { AuthProvider, useAuth } from '../src/context/AuthContext';
 
 // Screens
-import AuthScreen from './screens/AuthScreen';
-import DashboardScreen from './screens/DashboardScreen';
-import AccountsScreen from './screens/AccountsScreen';
-import TemplatesScreen from './screens/TemplatesScreen';
-import ContactsScreen from './screens/ContactsScreen';
-import BroadcastScreen from './screens/BroadcastScreen';
-import ScheduledScreen from './screens/ScheduledScreen';
-import LogsScreen from './screens/LogsScreen';
-import AdminScreen from './screens/AdminScreen';
-import AddAccountScreen from './screens/AddAccountScreen';
+import AuthScreen from '../src/screens/AuthScreen';
+import DashboardScreen from '../src/screens/DashboardScreen';
+import AccountsScreen from '../src/screens/AccountsScreen';
+import TemplatesScreen from '../src/screens/TemplatesScreen';
+import ContactsScreen from '../src/screens/ContactsScreen';
+import BroadcastScreen from '../src/screens/BroadcastScreen';
+import ScheduledScreen from '../src/screens/ScheduledScreen';
+import LogsScreen from '../src/screens/LogsScreen';
+import AdminScreen from '../src/screens/AdminScreen';
+import AddAccountScreen from '../src/screens/AddAccountScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
