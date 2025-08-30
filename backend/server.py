@@ -293,18 +293,21 @@ async def get_contacts(current_user: UserResponse = Depends(get_current_user)):
     contacts = await db.contacts.find({"user_id": current_user.id}).to_list(1000)
     return [Contact(**contact) for contact in contacts]
 
+class ContactCreate(BaseModel):
+    name: str
+    phone: Optional[str] = None
+    telegram_username: Optional[str] = None
+
 @api_router.post("/contacts", response_model=Contact)
 async def create_contact(
-    name: str,
-    phone: Optional[str] = None,
-    telegram_username: Optional[str] = None,
+    contact_data: ContactCreate,
     current_user: UserResponse = Depends(get_current_user)
 ):
     contact = Contact(
         user_id=current_user.id,
-        name=name,
-        phone=phone,
-        telegram_username=telegram_username
+        name=contact_data.name,
+        phone=contact_data.phone,
+        telegram_username=contact_data.telegram_username
     )
     
     await db.contacts.insert_one(contact.dict())
