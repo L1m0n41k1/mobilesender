@@ -366,7 +366,7 @@ class SenderAPITester:
             
             # Test creating a new contact
             response = self.make_request("POST", "/contacts", 
-                                       {"name": "Иван Петров", "phone": "+79001234567", "telegram_username": "@ivan_petrov"}, 
+                                       params={"name": "Иван Петров", "phone": "+79001234567", "telegram_username": "@ivan_petrov"}, 
                                        token=self.user_token)
             
             if response.status_code == 200:
