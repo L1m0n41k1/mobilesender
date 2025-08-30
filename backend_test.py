@@ -328,7 +328,7 @@ class SenderAPITester:
             
             # Test creating a new template
             response = self.make_request("POST", "/templates", 
-                                       {"name": "Приветствие", "content": "Привет! Как дела?"}, 
+                                       params={"name": "Приветствие", "content": "Привет! Как дела?"}, 
                                        token=self.user_token)
             
             if response.status_code == 200:
