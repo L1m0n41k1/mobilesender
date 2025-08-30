@@ -51,9 +51,15 @@ class SenderAPITester:
             if method.upper() == "GET":
                 response = requests.get(url, headers=headers, params=params, timeout=30)
             elif method.upper() == "POST":
-                response = requests.post(url, headers=headers, json=data, timeout=30)
+                if params:
+                    response = requests.post(url, headers=headers, params=params, timeout=30)
+                else:
+                    response = requests.post(url, headers=headers, json=data, timeout=30)
             elif method.upper() == "PUT":
-                response = requests.put(url, headers=headers, json=data, timeout=30)
+                if params:
+                    response = requests.put(url, headers=headers, params=params, timeout=30)
+                else:
+                    response = requests.put(url, headers=headers, json=data, timeout=30)
             elif method.upper() == "DELETE":
                 response = requests.delete(url, headers=headers, timeout=30)
             else:
