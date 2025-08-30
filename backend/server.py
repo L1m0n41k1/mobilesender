@@ -242,19 +242,22 @@ async def get_messenger_accounts(current_user: UserResponse = Depends(get_curren
     accounts = await db.messenger_accounts.find({"user_id": current_user.id}).to_list(100)
     return [MessengerAccount(**account) for account in accounts]
 
+class MessengerAccountCreate(BaseModel):
+    messenger_type: str
+    account_name: str
+
 @api_router.post("/messenger-accounts", response_model=MessengerAccount)
 async def create_messenger_account(
-    messenger_type: str,
-    account_name: str,
+    account_data: MessengerAccountCreate,
     current_user: UserResponse = Depends(get_current_user)
 ):
-    if messenger_type not in ["telegram", "whatsapp"]:
+    if account_data.messenger_type not in ["telegram", "whatsapp"]:
         raise HTTPException(status_code=400, detail="Invalid messenger type")
     
     account = MessengerAccount(
         user_id=current_user.id,
-        messenger_type=messenger_type,
-        account_name=account_name
+        messenger_type=account_data.messenger_type,
+        account_name=account_data.account_name
     )
     
     await db.messenger_accounts.insert_one(account.dict())
