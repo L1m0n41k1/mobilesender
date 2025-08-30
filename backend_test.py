@@ -290,7 +290,7 @@ class SenderAPITester:
             
             # Test creating a new messenger account
             response = self.make_request("POST", "/messenger-accounts", 
-                                       {"messenger_type": "telegram", "account_name": "My Telegram"}, 
+                                       params={"messenger_type": "telegram", "account_name": "My Telegram"}, 
                                        token=self.user_token)
             
             if response.status_code == 200:
