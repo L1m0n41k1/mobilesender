@@ -218,7 +218,7 @@ class SenderAPITester:
                 
                 # Test granting unlimited access
                 response = self.make_request("PUT", f"/users/{self.test_user_id}/unlimited", 
-                                           {"is_unlimited": True}, token=self.admin_token)
+                                           params={"is_unlimited": True}, token=self.admin_token)
                 
                 if response.status_code == 200:
                     self.log_test("Grant Unlimited Access", True, 
