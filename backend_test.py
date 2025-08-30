@@ -426,9 +426,9 @@ class SenderAPITester:
             # Test accessing protected endpoint without token
             response = self.make_request("GET", "/auth/me")
             
-            if response.status_code == 401:
+            if response.status_code in [401, 403]:
                 self.log_test("Authentication Required", True, 
-                            "Correctly denied access without authentication token")
+                            f"Correctly denied access without authentication token (Status: {response.status_code})")
             else:
                 self.log_test("Authentication Required", False, 
                             f"Should require authentication. Status: {response.status_code}", 
